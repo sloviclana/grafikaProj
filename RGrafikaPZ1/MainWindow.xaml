@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="PZ1"  Height="800" Width="1000">
+    <DockPanel MouseRightButtonDown="DesniKlik" MouseLeftButtonUp="LeviKlikPoligon" Background="LightGray">
+        <Menu x:Name="menu" Height="25" DockPanel.Dock="Top" Background="DimGray">
+            <MenuItem Margin="80, 0, 20, 0" Header="Load graph" FontFamily="Cambria light" FontSize="15" Click="LoadGraph_Click"/>
+            <MenuItem Margin="290, 0, 20, 0" Header="Edit" FontFamily="Cambria light" FontSize="15" >
+                <MenuItem Header="Undo" Click="Undo_Click" Background="DimGray"/>
+                <MenuItem Header="Redo" Click="RedO_Click" Background="DimGray"/>
+                <MenuItem Header="Clear" Click="Clear_Click" Background="DimGray"/>
+            </MenuItem>
+            <MenuItem Margin="290, 0, 20, 0" Header="Add to graph" FontFamily="Cambria light" FontSize="15">
+                <MenuItem x:Name="EllipseChecked" Header="Draw Ellipse" IsCheckable="True" Background="DimGray"/>
+                <MenuItem x:Name="PolygonChecked" Header="Draw Polygon" IsCheckable="True" Background="DimGray"/>
+                <MenuItem x:Name="TextChecked" Header="Add Text" IsCheckable="True" Background="DimGray"/>
+            </MenuItem>
+        </Menu>
+        <Slider x:Name="slider" Background="DimGray" Minimum="0.3" Maximum="15" Value="1" DockPanel.Dock="Top"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Canvas x:Name="canvas" DockPanel.Dock="Bottom" Height="600" Width="750" Focusable="True" MouseLeftButtonDown="editObj_Click" >
+                <Canvas.LayoutTransform>
+                    <ScaleTransform x:Name="SkaliranjeTransform" ScaleX="{Binding ElementName=slider, Path=Value}"
+                                ScaleY="{Binding ElementName=slider, Path=Value}"/>
+                </Canvas.LayoutTransform>
+            </Canvas>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
